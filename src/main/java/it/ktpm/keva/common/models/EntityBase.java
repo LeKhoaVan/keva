@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import it.ktpm.keva.common.util.DateTimeUtils;
 import jakarta.persistence.*;
 import jakarta.persistence.Id;
+import jakarta.persistence.Version;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +12,6 @@ import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import org.springframework.data.annotation.*;
-import org.springframework.data.annotation.Version;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -31,31 +31,31 @@ public class EntityBase implements Serializable {
     @JdbcTypeCode(SqlTypes.CHAR)
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = innerClass.ID)
-    private UUID id;
+    protected  UUID id;
 
     @Version
     @Column(name = innerClass.VERSION)
-    private int version;
+    protected  int version;
 
     @CreatedBy
     @Column(name = innerClass.CREATE_BY)
-    private String createBy;
+    protected  String createBy;
 
     @CreatedDate
     @DateTimeFormat(pattern = DateTimeUtils.DATE_TIME_FORMAT)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DateTimeUtils.DATE_TIME_FORMAT)
     @Column(name = innerClass.CREATE_AT)
-    private LocalDateTime createAt;
+    protected  LocalDateTime createAt;
 
     @LastModifiedBy
     @Column(name = innerClass.LAST_MODIFIED_BY)
-    private String lastModifiedBy;
+    protected  String lastModifiedBy;
 
     @LastModifiedDate
     @DateTimeFormat(pattern = DateTimeUtils.DATE_TIME_FORMAT)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DateTimeUtils.DATE_TIME_FORMAT)
     @Column(name = innerClass.LAST_MODIFIED_AT)
-    private LocalDateTime lastModifiedAt;
+    protected  LocalDateTime lastModifiedAt;
 
     @Override
     public boolean equals(Object o) {
