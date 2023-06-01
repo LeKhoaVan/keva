@@ -1,10 +1,12 @@
 package it.ktpm.keva.role.controller;
 
+
+import it.ktpm.keva.common.util.ResponseUtils;
+import it.ktpm.keva.role.dto.RoleDTO;
 import it.ktpm.keva.role.model.Role;
 import it.ktpm.keva.role.service.RoleService;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,19 +22,28 @@ public class RoleController {
 
     @GetMapping("/getAll")
     public Object getAll(){
-        List<Role> roles = roleService.findAll();
-        return new ResponseEntity<>(roles, HttpStatus.OK);
+        List<RoleDTO> rolesDto = roleService.findAllDto(RoleDTO.class);
+        return ResponseUtils.get(rolesDto, HttpStatus.OK);
+    }
+    @GetMapping("/get-page")
+    public Object getPage(@RequestParam("page") int page,
+                          @RequestParam("size") int size){
+
+        List<RoleDTO> rolesDto = roleService.findAllDto(
+                RoleDTO.class, Pageable.ofSize(size).withPage(page));
+
+        return ResponseUtils.get(rolesDto, HttpStatus.OK);
     }
 
     @PostMapping("save")
     public Object saveRole(@RequestBody Role role){
-        roleService.addRole(role);
-        return new ResponseEntity<>(role,HttpStatus.CREATED);
+        roleService.save(role);
+        return ResponseUtils.get(role,HttpStatus.CREATED);
     }
 
     @PostMapping("/update")
     public Object updateRole(@RequestBody Role role){
         roleService.updateRole(role, role.getCode());
-        return new ResponseEntity<>(role,HttpStatus.OK);
+        return ResponseUtils.get(role,HttpStatus.OK);
     }
 }
