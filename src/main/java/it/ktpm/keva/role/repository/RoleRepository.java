@@ -13,6 +13,6 @@ public interface RoleRepository extends JpaRepository<Role, UUID> {
 
     Role deleteByCode(String code);
 
-    @Query(value = "select * from "+ RoleUtils.RoleTable.TABLE_NAME +" r where r."+RoleUtils.RoleTable.NAME+" = :nameRole",nativeQuery = true)
+    @Query(value = "select * from k_role r where r.k_name = :nameRole",nativeQuery = true)
     Role findRolesByName(@Param("nameRole") String nameRole);
 }

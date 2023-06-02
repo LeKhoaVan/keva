@@ -1,6 +1,7 @@
 package it.ktpm.keva.role.service.impl;
 
 import it.ktpm.keva.common.util.KevaMapper;
+import it.ktpm.keva.role.dto.RoleDTO;
 import it.ktpm.keva.role.model.Role;
 import it.ktpm.keva.role.repository.RoleRepository;
 import it.ktpm.keva.role.service.RoleService;
@@ -48,5 +49,13 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role findRoleByName(String name) {
         return roleRepository.findRolesByName(name);
+    }
+
+    @Override
+    public RoleDTO saveRole(RoleDTO roleDTO) {
+        Role role = kevaMapper.map(roleDTO,Role.class);
+        Role roleSave = roleRepository.save(role);
+        RoleDTO dto = kevaMapper.map(roleSave,RoleDTO.class);
+        return dto;
     }
 }
