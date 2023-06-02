@@ -5,6 +5,7 @@ import it.ktpm.keva.common.util.ResponseUtils;
 import it.ktpm.keva.role.dto.RoleDTO;
 import it.ktpm.keva.role.model.Role;
 import it.ktpm.keva.role.service.RoleService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -36,9 +37,9 @@ public class RoleController {
     }
 
     @PostMapping("save")
-    public Object saveRole(@RequestBody Role role){
-        roleService.save(role);
-        return ResponseUtils.get(role,HttpStatus.CREATED);
+    public Object saveRole(@RequestBody @Valid RoleDTO roleDTO){
+        RoleDTO dto = roleService.saveRole(roleDTO);
+        return ResponseUtils.get(dto,HttpStatus.CREATED);
     }
 
     @PostMapping("/update")

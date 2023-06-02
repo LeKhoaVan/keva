@@ -13,4 +13,6 @@ public interface RoleService extends GenericService<Role, UUID, RoleDTO> {
 
     Role deleteRole(String code);
     Role findRoleByName(String name);
+
+    RoleDTO saveRole(RoleDTO roleDTO);
 }
