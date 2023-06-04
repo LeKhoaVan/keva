@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -32,5 +33,5 @@ public class RoleWithOperationDTO {
 
     private Operation.Type type;
 
-    private Set<OperationDTO> operationDTOs;
+    private Set<OperationDTO> operations = new HashSet<>();
 }

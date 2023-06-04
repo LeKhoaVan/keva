@@ -9,6 +9,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.validator.constraints.Length;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -36,7 +37,7 @@ public class Operation extends EntityBase {
     private Type type;
 
     @ManyToMany(mappedBy = RoleUtils.RoleMappedOperation.SERVICE_MAPPED_ROLE)
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
