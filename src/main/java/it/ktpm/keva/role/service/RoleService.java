@@ -1,7 +1,9 @@
 package it.ktpm.keva.role.service;
 
 import it.ktpm.keva.common.service.GenericService;
+import it.ktpm.keva.role.dto.OperationDTO;
 import it.ktpm.keva.role.dto.RoleDTO;
+import it.ktpm.keva.role.dto.RoleWithOperationDTO;
 import it.ktpm.keva.role.model.Role;
 
 import java.util.List;
@@ -15,4 +17,5 @@ public interface RoleService extends GenericService<Role, UUID, RoleDTO> {
     Role findRoleByName(String name);
 
     RoleDTO saveRole(RoleDTO roleDTO);
+    RoleWithOperationDTO addOperation(UUID roleID, List<UUID> operationIds);
 }
