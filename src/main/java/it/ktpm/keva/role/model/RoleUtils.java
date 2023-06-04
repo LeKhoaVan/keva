@@ -24,7 +24,7 @@ public class RoleUtils {
     }
 
     public static class UserGroup{
-        public static final String TABLE_NAME = "K_GROUP";
+        public static final String TABLE_NAME = "K_USER_GROUP";
         public static final String CODE = "K_CODE";
         public static final String NAME = "K_NAME";
         public static final String DESCRIPTION = "K_DESCRIPTION";
