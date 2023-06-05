@@ -29,6 +29,13 @@ public class GlobalException {
 //        return ResponseUtils.error(exception,HttpStatus.BAD_REQUEST);
 //    }
 
+    //exception KevaBusinessException
+    @ExceptionHandler(KevaBusinessException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ResponseDTO> getError(KevaBusinessException exception){
+        return ResponseUtils.error(exception,HttpStatus.BAD_REQUEST);
+    }
+
     //exception phia truoc, phia DTO
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

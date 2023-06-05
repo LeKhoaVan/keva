@@ -23,7 +23,7 @@ public class User extends EntityBase {
     @Column(name = UserUtils.User.USER_NAME, length = 100, updatable = false, nullable = false, unique = true)
     private String userName;
 
-    @Column(name = UserUtils.User.PASSWORD, length = 20, nullable = false)
+    @Column(name = UserUtils.User.PASSWORD, nullable = false)
     private String password;
 
     @Column(name = UserUtils.User.FULL_NAMNE, length = 50, nullable = false)
@@ -39,6 +39,7 @@ public class User extends EntityBase {
     private String avatar;
 
     @Column(name = UserUtils.User.STATUS, nullable = false)
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @Column(name = UserUtils.User.FACEBOOK)
