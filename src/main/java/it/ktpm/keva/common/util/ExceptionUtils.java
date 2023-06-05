@@ -21,7 +21,7 @@ public class ExceptionUtils {
 
     //get exception unique code
     public static List<String> getErrors(RuntimeException exception){
-        return List.of("Ops! Something wrong happens...");
+        return List.of(exception.getMessage());
     }
 
     public static List<String> getErrors(MethodArgumentNotValidException exception) {

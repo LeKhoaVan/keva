@@ -24,7 +24,7 @@ public class UserController {
 
     @PostMapping("/save")
     public Object saveUser(@RequestBody UserDTO userDTO){
-        return ResponseUtils.get(userService.saveUser(userDTO),
+        return ResponseUtils.get(userService.createUser(userDTO),
                 HttpStatus.CREATED);
     }
 }
