@@ -50,6 +50,12 @@ public class UserGroup extends EntityBase {
         return this;
     }
 
+    public UserGroup addRole(Role role){
+        this.roles.add(role);
+        role.getUserGroups().add(this);
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -63,4 +69,6 @@ public class UserGroup extends EntityBase {
     public int hashCode() {
         return getClass().hashCode();
     }
+
+
 }

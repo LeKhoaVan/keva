@@ -18,4 +18,6 @@ public interface RoleService extends GenericService<Role, UUID, RoleDTO> {
 
     RoleDTO saveRole(RoleDTO roleDTO);
     RoleWithOperationDTO addOperation(UUID roleID, List<UUID> operationIds);
+
+    List<Role> findAllById(List<UUID> ids);
 }

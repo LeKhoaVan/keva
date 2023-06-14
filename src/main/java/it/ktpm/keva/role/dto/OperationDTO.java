@@ -22,7 +22,7 @@ public class OperationDTO {
     private String code;
 
 
-    @Size(min = 3, max = 10, message = "{role.code.size}")
+    @Size(min = 3, max = 25, message = "{role.code.size}")
     private String name;
 
 

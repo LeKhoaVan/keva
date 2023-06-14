@@ -1,6 +1,7 @@
 package it.ktpm.keva.role.controller;
 
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import it.ktpm.keva.common.util.ResponseUtils;
 import it.ktpm.keva.role.dto.RoleDTO;
 import it.ktpm.keva.role.model.Role;
@@ -24,11 +25,14 @@ public class RoleController {
         this.roleService = roleService;
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @GetMapping("/getAll")
     public Object getAll(){
         List<RoleDTO> rolesDto = roleService.findAllDto(RoleDTO.class);
         return ResponseUtils.get(rolesDto, HttpStatus.OK);
     }
+
+    @SecurityRequirement(name = "bearerAuth")
     @GetMapping("/get-page")
     public Object getPage(@RequestParam("page") int page,
                           @RequestParam("size") int size){
@@ -39,17 +43,21 @@ public class RoleController {
         return ResponseUtils.get(rolesDto, HttpStatus.OK);
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping("save")
     public Object saveRole(@RequestBody @Valid RoleDTO roleDTO){
         RoleDTO dto = roleService.saveRole(roleDTO);
         return ResponseUtils.get(dto,HttpStatus.CREATED);
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/update")
     public Object updateRole(@RequestBody Role role){
         roleService.updateRole(role, role.getCode());
         return ResponseUtils.get(role,HttpStatus.OK);
     }
+
+    @SecurityRequirement(name = "bearerAuth")
 
     @PostMapping("{role-id}/add-operation")
     public Object addOperation(@RequestBody List<UUID> ids,

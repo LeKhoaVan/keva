@@ -25,7 +25,7 @@ public class Operation extends EntityBase {
     private String code;
 
     @Column(name = RoleUtils.Operation.NAME, unique = true)
-    @Length(min = 3, max = 10, message = "name in size min = {min} size max = {max}")
+    @Length(min = 3, max = 25, message = "name in size min = {min} size max = {max}")
     private String name;
 
     @Column(name = RoleUtils.Operation.DESCRIPTION)

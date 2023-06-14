@@ -81,4 +81,9 @@ public class RoleServiceImpl implements RoleService {
 
         return mapper.map(roleSave, RoleWithOperationDTO.class);
     }
+
+    @Override
+    public List<Role> findAllById(List<UUID> ids) {
+        return roleRepository.findAllById(ids);
+    }
 }
