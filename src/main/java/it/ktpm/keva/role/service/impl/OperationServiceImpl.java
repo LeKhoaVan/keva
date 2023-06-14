@@ -48,5 +48,10 @@ public class OperationServiceImpl implements OperationService {
         return operationRepository.findAllById(operationIds);
     }
 
+    @Override
+    public List<Operation> findAllByNameAndUserName(String operationName, String userName) {
+        return operationRepository.findAllByNameAndUserName(operationName,userName);
+    }
+
 
 }

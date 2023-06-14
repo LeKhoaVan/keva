@@ -12,4 +12,5 @@ public interface OperationService extends GenericService<Operation, UUID, Operat
     List<Operation> findAll(List<UUID> operationIds);
 
 
+    List<Operation> findAllByNameAndUserName(String operationName, String userName);
 }

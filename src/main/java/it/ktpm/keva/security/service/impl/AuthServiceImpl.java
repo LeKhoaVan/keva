@@ -30,6 +30,8 @@ public class AuthServiceImpl implements AuthService {
         if(passwordEncoder.matches(loginDTO.getPassword(),user.getPassword())){
             return jwtUtils.generateJwt(loginDTO.getUserName());
         }
+
+
         throw new KevaBusinessException("Password incorrect!!!");
     }
 }
