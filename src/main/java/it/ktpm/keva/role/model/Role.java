@@ -3,7 +3,6 @@ package it.ktpm.keva.role.model;
 import it.ktpm.keva.common.models.EntityBase;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

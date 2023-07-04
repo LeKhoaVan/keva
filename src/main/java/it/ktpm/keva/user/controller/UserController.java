@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import it.ktpm.keva.common.util.ResponseUtils;
 import it.ktpm.keva.user.dto.UserDTO;
 import it.ktpm.keva.user.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class UserController {
 
     @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/save")
-    public Object saveUser(@RequestBody UserDTO userDTO){
+    public Object saveUser(@RequestBody @Valid UserDTO userDTO){
         return ResponseUtils.get(userService.createUser(userDTO),
                 HttpStatus.CREATED);
     }

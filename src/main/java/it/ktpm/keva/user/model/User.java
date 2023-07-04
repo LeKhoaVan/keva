@@ -1,6 +1,7 @@
 package it.ktpm.keva.user.model;
 
 import it.ktpm.keva.common.models.EntityBase;
+import it.ktpm.keva.project.model.Work;
 import it.ktpm.keva.role.model.UserGroup;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -56,6 +57,13 @@ public class User extends EntityBase {
 
     @ManyToMany(mappedBy = UserUtils.UserGroupMappedUser.USER_MAP_USERGROUP)
     private Set<UserGroup> userGroups = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    private Set<Work> works;
+
+    public void addWork(Work work){
+        this.works.add(work);
+    }
 
     @Override
     public boolean equals(Object o) {

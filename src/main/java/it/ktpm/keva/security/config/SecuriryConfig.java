@@ -60,6 +60,7 @@ public class SecuriryConfig {
         //Api authentication
         http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/auth/login").permitAll()
+                .requestMatchers("/user/save").permitAll()
                 .requestMatchers("/swagger-ui/**").permitAll()
                 .requestMatchers("/v3/api-docs/**").permitAll()
                 .requestMatchers("/operation/**").authenticated()
