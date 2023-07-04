@@ -14,4 +14,8 @@ public interface UserService extends GenericService<User, UUID, UserDTO> {
     List<User> findAll(List<UUID> ids);
 
     Optional<User> findByUserName(String value);
+
+    User findByEmail(String email);
+
+    User findById(UUID user);
 }
