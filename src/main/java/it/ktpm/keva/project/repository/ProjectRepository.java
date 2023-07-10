@@ -10,10 +10,13 @@ import java.util.UUID;
 
 public interface ProjectRepository extends JpaRepository<Project, UUID> {
 
-    @Query("select p from Project p where p.code = :ccode")
-    Project handleFindByCode(@Param("ccode") String code);
+    @Query("select p from Project p where p.code = :code")
+    Project handleFindByCode(@Param("code") String code);
 
     @Modifying(clearAutomatically = true)
-    @Query("update Project p set p.status = 'TEMPORARY_BLOCKED' where p.code = :code")
-    void temporaryBlocked(@Param("code") String code);
+    @Query("update Project p set p.status = :content where p.code = :code")
+    void changeStatusProject(@Param("code") String code, @Param("content") Project.Status content);
+
+    @Query("select p from Project p left join Work w on p.id = w.project.id where p.code = :codeProject and w.status ='ACTIVE'")
+    Project checkCompleteWork(@Param("codeProject") String codeProject);
 }

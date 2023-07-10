@@ -44,6 +44,7 @@ public class Work extends EntityBase {
     public enum Status{
         ACTIVE,
         TEMPORARY_BLOCKED,
-        BLOCKED
+        BLOCKED,
+        COMPLETE
     }
 }

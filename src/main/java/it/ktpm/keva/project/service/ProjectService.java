@@ -13,4 +13,8 @@ public interface ProjectService {
     public List<ProjectDTO> findAll();
 
     Project findById(UUID project);
+
+    ProjectDTO compeleteProject(String code);
+
+    Project checkComplete(String codeProject);
 }

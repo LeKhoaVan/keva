@@ -11,6 +11,6 @@ public interface WorkRepository extends JpaRepository<Work, UUID> {
     @Query("select w from Work w where w.code = :code")
     Work findCode(@Param("code") String code);
 
-    @Query("update Work w set w.status = 'TEMPORARY_BLOCKED,' where w.code = :code")
-    Work temporaryWork(@Param("code") String code);
+    @Query("update Work w set w.status = :status where w.code = :code")
+    Work changeStatus(@Param("code") String code, @Param("status") Work.Status status);
 }

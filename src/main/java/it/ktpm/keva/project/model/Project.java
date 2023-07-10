@@ -47,7 +47,8 @@ public class Project extends EntityBase {
     public enum Status{
         ACTIVE,
         TEMPORARY_BLOCKED,
-        BLOCKED
+        BLOCKED,
+        COMPLETE
     }
 
 }

@@ -1,5 +1,6 @@
 package it.ktpm.keva.project.service.impl;
 
+import it.ktpm.keva.common.exception.KevaBusinessException;
 import it.ktpm.keva.common.util.KevaMapper;
 import it.ktpm.keva.project.dto.ProjectDTO;
 import it.ktpm.keva.project.model.Project;
@@ -36,10 +37,24 @@ public class ProjectServiceImpl implements ProjectService {
     public ProjectDTO temporaryProject(String code) {
         Project project = projectRepository.handleFindByCode(code);
         if(project !=null) {
-            projectRepository.temporaryBlocked(project.getCode());
+            projectRepository.changeStatusProject(project.getCode(), Project.Status.TEMPORARY_BLOCKED);
             ProjectDTO dto = mapper.map(project,ProjectDTO.class);
             dto.setStatus(Project.Status.TEMPORARY_BLOCKED);
             return dto;
+        }
+        return null;
+    }
+
+    @Override
+    public ProjectDTO compeleteProject(String code) {
+        Project project = projectRepository.handleFindByCode(code);
+        if(project !=null) {
+            if (checkComplete(project.getCode()) == null){
+                projectRepository.changeStatusProject(project.getCode(), Project.Status.COMPLETE);
+                ProjectDTO dto = mapper.map(project,ProjectDTO.class);
+                dto.setStatus(Project.Status.COMPLETE);
+                return dto;
+            }
         }
         return null;
     }
@@ -58,4 +73,13 @@ public class ProjectServiceImpl implements ProjectService {
     public Project findById(UUID project) {
         return projectRepository.findById(project).orElse(null);
     }
+
+    @Override
+    public Project checkComplete(String codeProject) {
+        if (projectRepository.checkCompleteWork(codeProject) != null){
+            throw new KevaBusinessException("cannot complete project because work is not complete");
+        }
+        return projectRepository.checkCompleteWork(codeProject);
+    }
+
 }
