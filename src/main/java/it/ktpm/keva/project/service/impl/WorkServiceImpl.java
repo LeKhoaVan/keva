@@ -52,7 +52,7 @@ public class WorkServiceImpl implements WorkService {
     public WorkDTO temporaryWork(String code) {
         Work work = workRepository.findCode(code);
         if(work != null){
-            Work workTemporary = workRepository.temporaryWork(code);
+            Work workTemporary = workRepository.changeStatus(code, Work.Status.TEMPORARY_BLOCKED);
             return mapper.map(workTemporary,WorkDTO.class);
         }
         return null;
@@ -68,5 +68,15 @@ public class WorkServiceImpl implements WorkService {
                 return workDTO;})
                 .collect(Collectors.toList());
         return workDTOs;
+    }
+
+    @Override
+    public WorkDTO completeWork(String code) {
+        Work work = workRepository.findCode(code);
+        if(work != null){
+            Work workTemporary = workRepository.changeStatus(code,Work.Status.COMPLETE);
+            return mapper.map(workTemporary,WorkDTO.class);
+        }
+        return null;
     }
 }

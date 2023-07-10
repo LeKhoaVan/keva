@@ -8,4 +8,6 @@ public interface WorkService {
     WorkDTO saveWork(WorkDTO workDTO);
     WorkDTO temporaryWork(String code);
     List<WorkDTO> getAll();
+
+    WorkDTO completeWork(String code);
 }

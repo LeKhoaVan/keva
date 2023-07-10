@@ -28,8 +28,14 @@ public class WorkController {
         return ResponseUtils.get(workService.saveWork(workDTO),HttpStatus.CREATED);
     }
     @SecurityRequirement(name = "bearerAuth")
-    @PutMapping("/temporary-work")
+    @PutMapping("/blocked-work")
     public Object temporaryWork(@RequestParam("code") String code){
         return ResponseUtils.get(workService.temporaryWork(code),HttpStatus.OK);
+    }
+
+    @SecurityRequirement(name = "bearerAuth")
+    @PutMapping("/complete-work")
+    public Object completeWork(@RequestParam("code") String code){
+        return ResponseUtils.get(workService.completeWork(code),HttpStatus.OK);
     }
 }

@@ -33,4 +33,10 @@ public class ProjectController {
     public Object temporaryProject(@RequestParam("code") String code){
         return ResponseUtils.get(projectService.temporaryProject(code),HttpStatus.OK);
     }
+
+    @PutMapping("complete-project")
+    @SecurityRequirement(name = "bearerAuth")
+    public Object completeProject(@RequestParam("code") String code){
+        return ResponseUtils.get(projectService.compeleteProject(code),HttpStatus.OK);
+    }
 }
